@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下一代该怎么办？</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+
+        .download-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        #download-all-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #download-all-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #download-all-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        #download-status {
+            color: #495057;
+            font-size: 14px;
+            margin-top: 10px;
+            height: 20px;
+        }
+
+        .card-stream {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 20px;
+            padding-top: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 3 / 4;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            color: #111;
+        }
+
+        .illustration-area {
+            flex-grow: 1;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .info-area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .info-area h1 {
+            font-size: 34px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            line-height: 1.3;
+        }
+
+        .info-area p {
+            font-size: 21px;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .card.layout-a {
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .card.layout-a .info-area {
+            flex-grow: 0;
+            flex-shrink: 0;
+            height: auto;
+        }
+
+        .card.layout-b {
+            flex-direction: column-reverse;
+            text-align: left;
+        }
+
+        .card.layout-b .info-area {
+            flex-grow: 0;
+            flex-shrink: 0;
+            height: auto;
+        }
+
+        .card.layout-c {
+            position: relative;
+            color: #FFFFFF;
+            text-align: center;
+            justify-content: flex-end;
+        }
+
+        .card.layout-c .illustration-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .card.layout-c .info-area {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            width: 100%;
+        }
+
+        .card.layout-c .info-area p {
+            color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="download-container">
+        <button id="download-all-btn">下载全部卡片 (Zip)</button>
+        <p id="download-status"></p>
+    </div>
+
+    <div class="card-stream">
+        <div class="card layout-c">
+            <div class="illustration-area" style="background-image: url('images/card_00_20260120_215126.png');"></div>
+            <div class="info-area">
+                <h1>下一代该怎么办？</h1>
+                <p>在AI时代，我们该如何培养孩子？</p>
+            </div>
+        </div>
+
+        <div class="card layout-a">
+            <div class="illustration-area" style="background-image: url('images/card_01_20260120_215150.png');"></div>
+            <div class="info-area">
+                <h1>AI时代的专业危机</h1>
+                <p>传统专业的保质期不超过3年。用人类知识和经验垒起来的护城河，正在被技术迅速填平。</p>
+            </div>
+        </div>
+
+        <div class="card layout-b">
+            <div class="illustration-area" style="background-image: url('images/card_02_20260120_215214.png');"></div>
+            <div class="info-area">
+                <h1>独特性胜过一致性</h1>
+                <p>AI最容易替代的是有大量人类经验可学习的一致性工作。独特性越高的人，在AI时代的生存能力反而越强。</p>
+            </div>
+        </div>
+
+        <div class="card layout-a">
+            <div class="illustration-area" style="background-image: url('images/card_03_20260120_220125.png');"></div>
+            <div class="info-area">
+                <h1>曹德智的启示</h1>
+                <p>微场景设计师的故事告诉我们：一个人能够定义独特问题、找到需求场景、研发产品、建立流程，就能发明自己的职业。</p>
+            </div>
+        </div>
+
+        <div class="card layout-b">
+            <div class="illustration-area" style="background-image: url('images/card_04_20260120_220950.png');"></div>
+            <div class="info-area">
+                <h1>逃离一致性：接触多样的人</h1>
+                <p>珍惜与各行各业打交道的机会。学校不仅是老师教孩子的地方，更是高密度、高质量的人类联系中心。</p>
+            </div>
+        </div>
+
+        <div class="card layout-a">
+            <div class="illustration-area" style="background-image: url('images/card_05_20260120_221020.png');"></div>
+            <div class="info-area">
+                <h1>逃离一致性：交付真实结果</h1>
+                <p>用结果倒逼学习。入学即创业，从市场调研到产品上市，每一步都提供支持，直到把产品做出来。</p>
+            </div>
+        </div>
+
+        <div class="card layout-b">
+            <div class="illustration-area" style="background-image: url('images/card_06_20260120_221244.png');"></div>
+            <div class="info-area">
+                <h1>逃离一致性：建立独特规则</h1>
+                <p>学会与规则共处，比会用工具重要一万倍。让孩子明白：利益是靠遵守规则换来的，不是靠无理取闹得到的。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const downloadBtn = document.getElementById('download-all-btn');
+        const statusEl = document.getElementById('download-status');
+        const cards = document.querySelectorAll('.card');
+
+        downloadBtn.addEventListener('click', async () => {
+            if (!cards || cards.length === 0) {
+                statusEl.textContent = '页面上没有可供下载的卡片。';
+                return;
+            }
+
+            downloadBtn.disabled = true;
+            statusEl.textContent = '正在转换卡片... (0%)';
+
+            const zip = new JSZip();
+            let convertedCount = 0;
+
+            try {
+                for (const [i, card] of cards.entries()) {
+                    const canvas = await html2canvas(card, {
+                        useCORS: true,
+                        allowTaint: true,
+                        scale: 2
+                    });
+
+                    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+
+                    zip.file(`card-${i + 1}.png`, blob);
+
+                    convertedCount++;
+                    const progress = Math.round((convertedCount / cards.length) * 100);
+                    statusEl.textContent = `正在转换卡片... (${progress}%)`;
+                }
+
+                statusEl.textContent = '正在生成压缩包...';
+                const content = await zip.generateAsync({ type: 'blob' });
+
+                saveAs(content, 'visual-story-cards.zip');
+                statusEl.textContent = '下载完成！';
+
+            } catch (error) {
+                console.error("下载失败:", error);
+                statusEl.textContent = `下载出错: ${error.message}。请检查控制台。`;
+            } finally {
+                downloadBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
