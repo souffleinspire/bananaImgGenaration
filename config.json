@@ -1,6 +1,0 @@
-{
-    "api_key": "sk-TevTzB6YKzEN7laaih5ON4GvWZeeYiNzf5hTisQtKbLQloaR",
-    "api_url": "https://api.tu-zi.com/v1/images/generations",
-    "model": "gemini-3-pro-image-preview",
-    "output_dir": "images"
-}
